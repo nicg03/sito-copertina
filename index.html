@@ -54,16 +54,34 @@
     }
     header {
       background-color: #0d1117;
-      padding: 160px 20px 100px;
+      padding: 160px 20px 0;
       text-align: center;
+      position: relative;
     }
     header h1 {
       font-size: 3rem;
       margin-bottom: 20px;
+      z-index: 2;
+      position: relative;
     }
     header p {
       font-size: 1.2rem;
       color: #8b949e;
+      z-index: 2;
+      position: relative;
+    }
+    .hero-media {
+      margin-top: 40px;
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+      border-top: 1px solid #30363d;
+    }
+    .hero-media img,
+    .hero-media video {
+      width: 100%;
+      object-fit: cover;
+      display: block;
     }
     section {
       padding: 80px 20px;
@@ -155,6 +173,13 @@
   <header data-aos="fade-up">
     <h1>AI per l'ingegneria strutturale</h1>
     <p>Dalla mesh alla soluzione: il futuro della progettazione strutturale, potenziato dall'intelligenza artificiale.</p>
+    <div class="hero-media">
+      <!-- Per usare un'immagine, decommenta la riga sotto e sostituisci "hero.jpg" -->
+      <img src="satellite.jpg" alt="Visual hero"> 
+
+      <!-- Per usare un video, decommenta la riga sotto e sostituisci "hero.mp4" -->
+      <!-- <video src="hero.mp4" autoplay muted loop playsinline></video> -->
+    </div>
   </header>
 
   <section id="about" data-aos="fade-up">
