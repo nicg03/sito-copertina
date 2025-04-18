@@ -4,43 +4,210 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ - Eulero</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0d1117;
-      color: #f0f6fc;
-      padding: 60px 20px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 0;
     }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    nav .logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
     header {
       text-align: center;
-      margin-bottom: 60px;
+      padding: 160px 20px 80px;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
     }
+
     header h1 {
-      font-size: 2.5rem;
-      color: #58a6ff;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+      margin-bottom: 20px;
     }
+
     .faq {
       max-width: 800px;
       margin: 0 auto;
+      padding: 0 20px 80px;
     }
+
     .faq-item {
-      margin-bottom: 30px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.5s ease forwards;
     }
+
+    .faq-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
     .faq-item h2 {
-      color: #c9d1d9;
+      color: var(--text-primary);
       font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 12px;
     }
+
     .faq-item p {
-      margin-top: 5px;
-      color: #8b949e;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .faq-item:nth-child(1) { animation-delay: 0.1s; }
+    .faq-item:nth-child(2) { animation-delay: 0.2s; }
+    .faq-item:nth-child(3) { animation-delay: 0.3s; }
+    .faq-item:nth-child(4) { animation-delay: 0.4s; }
+
+    footer {
+      background-color: var(--bg-secondary);
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      header {
+        padding: 140px 20px 60px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .faq {
+        padding: 0 20px 60px;
+      }
+
+      .faq-item {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 <body>
+  <nav data-aos="fade-down">
+    <div class="logo">
+      <img src="logo.png" alt="Eulero Logo">
+      Eulero
+    </div>
+    <ul>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="index.html#services">Servizi</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#roadmap">Roadmap</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="index.html#contact">Contatti</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>Domande frequenti</h1>
   </header>
+
   <div class="faq">
     <div class="faq-item">
       <h2>È compatibile con il mio software CAD?</h2>
@@ -59,5 +226,17 @@
       <p>Sì. La versione desktop è pensata per funzionare localmente, anche su workstation senza connessione a Internet.</p>
     </div>
   </div>
+
+  <footer>
+    &copy; 2025 Eulero. Tutti i diritti riservati.
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>

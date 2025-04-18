@@ -5,153 +5,540 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eulero - AI per l'ingegneria strutturale</title>
   <link rel="icon" type="image/png" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0d1117;
-      color: #f0f6fc;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
       line-height: 1.6;
     }
+
     a {
-      color: #58a6ff;
+      color: var(--accent);
       text-decoration: none;
+      transition: var(--transition);
     }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
     nav {
       position: fixed;
       width: 100%;
-      background-color: #161b22;
-      padding: 15px 40px;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
     }
+
     nav .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 1.4rem;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
     }
+
     nav .logo img {
-      height: 32px;
+      height: 28px;
       width: auto;
     }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 32px;
     }
+
     nav ul li a {
-      font-weight: 500;
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
     }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
     header {
-      background-color: #0d1117;
-      padding: 160px 20px 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 100px 20px 0;
       position: relative;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+      z-index: 1;
     }
+
     header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      z-index: 2;
-      position: relative;
+      font-size: 4rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      max-width: 800px;
+      line-height: 1.2;
+      letter-spacing: -1px;
     }
+
     header p {
-      font-size: 1.2rem;
-      color: #8b949e;
-      z-index: 2;
-      position: relative;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
     }
+
     .hero-media {
-      margin-top: 40px;
       width: 100%;
-      max-height: 500px;
+      max-width: 1200px;
+      margin-top: 60px;
+      border-radius: 12px;
       overflow: hidden;
-      border-top: 1px solid #30363d;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
-    .hero-media img,
-    .hero-media video {
+
+    .hero-media img {
       width: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
+
     section {
-      padding: 80px 20px;
-      max-width: 1000px;
+      padding: 120px 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
+
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #58a6ff;
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 40px;
+      color: var(--text-primary);
+      letter-spacing: -1px;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
     }
+
     .card {
-      background-color: #161b22;
-      padding: 25px;
-      border-radius: 10px;
-      border: 1px solid #30363d;
+      background-color: var(--bg-card);
+      padding: 32px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card.expanded {
+      grid-column: span 2;
+      transform: scale(1.02);
+      z-index: 2;
+    }
+
+    .card .expanded-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card.expanded .expanded-content {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 20px;
+    }
+
     .card h3 {
-      color: #c9d1d9;
-      margin-bottom: 10px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      font-weight: 500;
     }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .demo-section {
+      background-color: var(--bg-secondary);
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .demo-content {
+      text-align: left;
+    }
+
+    .demo-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+
+    .demo-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .demo-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .demo-button:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .demo-video {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .demo-video video {
+      width: 100%;
+      display: block;
+    }
+
     .tech ul {
       list-style: none;
       padding-left: 0;
     }
+
     .tech li {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
     }
+
     .team .member {
       text-align: center;
     }
+
     .team img {
-      width: 80px;
-      height: 80px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      border: 2px solid var(--border);
     }
+
     form input, form textarea {
       width: 100%;
-      padding: 12px;
-      background-color: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      color: #f0f6fc;
-      margin-bottom: 20px;
+      padding: 16px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      font-size: 1rem;
+      transition: var(--transition);
     }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
     form button {
-      background-color: #238636;
+      background-color: var(--accent);
       color: white;
       border: none;
-      padding: 12px 20px;
-      font-weight: 600;
-      border-radius: 6px;
+      padding: 16px 32px;
+      font-weight: 500;
+      border-radius: 8px;
       cursor: pointer;
+      transition: var(--transition);
     }
+
+    form button:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
     footer {
-      background-color: #161b22;
+      background-color: var(--bg-secondary);
       text-align: center;
-      padding: 30px;
+      padding: 40px;
       font-size: 0.9rem;
-      color: #8b949e;
-      margin-top: 60px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .demo-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .demo-content {
+        text-align: center;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Stili per il modale */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 40px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+
+    .modal h2 {
+      margin-bottom: 24px;
+      font-size: 2rem;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .modal input:focus,
+    .modal textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .modal button[type="submit"] {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 8px;
+    }
+
+    .modal button[type="submit"]:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .risultati-section {
+      padding: 120px 20px;
+      background-color: var(--bg-secondary);
+    }
+
+    .risultati-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+
+    .risultato-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .risultato-card.reverse {
+      direction: rtl;
+    }
+
+    .risultato-card.reverse .risultato-content {
+      direction: ltr;
+    }
+
+    .risultato-content {
+      padding: 20px;
+    }
+
+    .risultato-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .risultato-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .risultato-image {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .risultato-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .risultato-image img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .risultato-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .risultato-card.reverse {
+        direction: ltr;
+      }
+
+      .risultato-image {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -162,9 +549,8 @@
       Eulero
     </div>
     <ul>
-      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="#demo">Demo</a></li>
       <li><a href="#services">Servizi</a></li>
-      <li><a href="#tech">Tecnologia</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="faq.html">FAQ</a></li>
@@ -180,28 +566,92 @@
     </div>
   </header>
 
+  <section id="risultati" class="risultati-section" data-aos="fade-up">
+    <h2>Risultati e Funzionalità</h2>
+    <div class="risultati-container">
+      <div class="risultato-card">
+        <div class="risultato-content">
+          <h3>Analisi Strutturale Avanzata</h3>
+          <p>Eulero utilizza algoritmi di intelligenza artificiale per analizzare strutture complesse in tempo reale. I nostri modelli GNN prevedono con precisione le sollecitazioni e le deformazioni, permettendo ottimizzazioni strutturali significative.</p>
+        </div>
+        <div class="risultato-image">
+          <img src="struttura1.jpg" alt="Analisi strutturale">
+        </div>
+      </div>
+
+      <div class="risultato-card reverse">
+        <div class="risultato-content">
+          <h3>Ottimizzazione Topologica</h3>
+          <p>La nostra tecnologia di ottimizzazione topologica identifica automaticamente le aree di materiale non necessarie, riducendo il peso fino al 40% mantenendo le stesse caratteristiche strutturali.</p>
+        </div>
+        <div class="risultato-image">
+          <img src="struttura2.jpg" alt="Ottimizzazione topologica">
+        </div>
+      </div>
+
+      <div class="risultato-card">
+        <div class="risultato-content">
+          <h3>Visualizzazione 3D Interattiva</h3>
+          <p>L'interfaccia 3D intuitiva permette di manipolare i modelli in tempo reale, con feedback immediato sulle modifiche strutturali e visualizzazione avanzata dei risultati.</p>
+        </div>
+        <div class="risultato-image">
+          <img src="struttura3.jpg" alt="Visualizzazione 3D">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="demo-section" data-aos="fade-up">
+    <div class="demo-container">
+      <div class="demo-content">
+        <h2>Prova Eulero in azione</h2>
+        <p>Scopri come la nostra AI rivoluziona l'analisi strutturale. Genera mesh, ottimizza geometrie e ottieni risultati in tempo reale.</p>
+        <a href="#" class="demo-button">Richiedi una demo</a>
+      </div>
+      <div class="demo-video">
+        <video autoplay loop muted playsinline>
+          <source src="demo.mp4" type="video/mp4">
+          Il tuo browser non supporta il tag video.
+        </video>
+      </div>
+    </div>
+  </section>
+
   <section id="services" data-aos="fade-up">
     <h2>Servizi</h2>
     <div class="grid">
       <div class="card" data-aos="zoom-in">
         <h3>Ottimizzazione topologica</h3>
         <p>Design intelligente per ridurre peso e materiali mantenendo performance strutturale ottimale.</p>
+        <div class="expanded-content">
+          <p>La nostra tecnologia di ottimizzazione topologica utilizza algoritmi avanzati per identificare le aree di materiale non necessarie, permettendo di ridurre il peso fino al 40% mantenendo le stesse caratteristiche strutturali.</p>
+        </div>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="100">
         <h3>Analisi GNN</h3>
         <p>Predizione delle sollecitazioni su mesh con Graph Neural Networks.</p>
+        <div class="expanded-content">
+          <p>I nostri modelli GNN sono addestrati su milioni di casi d'uso per fornire previsioni accurate delle sollecitazioni in tempo reale, riducendo i tempi di analisi del 90% rispetto ai metodi tradizionali.</p>
+        </div>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="200">
         <h3>Interfaccia 3D</h3>
         <p>Ambiente interattivo per visualizzare, modificare e simulare componenti in tempo reale.</p>
+        <div class="expanded-content">
+          <p>L'interfaccia 3D intuitiva permette di manipolare i modelli in tempo reale, con feedback immediato sulle modifiche strutturali e visualizzazione avanzata dei risultati.</p>
+        </div>
       </div>
       <div class="card" data-aos="zoom-in" data-aos-delay="300">
-        <h3>AI generativa</h3>
-        <p>Algoritmi di Reinforcement Learning per creare strutture ottimizzate da zero.</p>
+        <h3>Genera Report</h3>
+        <p>Creazione automatica di report tecnici dettagliati con analisi e raccomandazioni.</p>
+        <div class="expanded-content">
+          <p>Il sistema genera automaticamente report completi che includono analisi strutturali, grafici delle sollecitazioni, raccomandazioni di ottimizzazione e documentazione tecnica dettagliata.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Sezione Tecnologia temporaneamente disattivata
   <section id="tech" class="tech" data-aos="fade-up">
     <h2>Tecnologia</h2>
     <ul>
@@ -212,6 +662,7 @@
       <li>🤖 Reinforcement Learning per design ottimizzati</li>
     </ul>
   </section>
+  -->
 
   <section id="team" class="team" data-aos="fade-up">
     <h2>Team</h2>
@@ -249,10 +700,10 @@
 
   <section id="contact" data-aos="fade-up">
     <h2>Contattaci</h2>
-    <form>
-      <input type="text" placeholder="Nome" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Messaggio" rows="6" required></textarea>
+    <form action="https://formspree.io/f/meoabdnr" method="POST">
+      <input type="text" name="nome" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="messaggio" placeholder="Messaggio" rows="6" required></textarea>
       <button type="submit">Invia messaggio</button>
     </form>
   </section>
@@ -261,11 +712,80 @@
     &copy; 2025 Eulero. Tutti i diritti riservati.
   </footer>
 
+  <!-- Modale Demo -->
+  <div class="modal-overlay" id="demoModal">
+    <div class="modal">
+      <button class="modal-close">&times;</button>
+      <h2>Richiedi una Demo</h2>
+      <form id="demoForm">
+        <input type="text" name="nome" placeholder="Nome e Cognome" required>
+        <input type="email" name="email" placeholder="Email aziendale" required>
+        <input type="text" name="azienda" placeholder="Nome Azienda" required>
+        <select name="dimensione" required>
+          <option value="">Seleziona dimensione azienda</option>
+          <option value="1-10">1-10 dipendenti</option>
+          <option value="11-50">11-50 dipendenti</option>
+          <option value="51-200">51-200 dipendenti</option>
+          <option value="201+">201+ dipendenti</option>
+        </select>
+        <textarea name="messaggio" placeholder="Descrivi brevemente il tuo progetto" rows="4" required></textarea>
+        <button type="submit">Invia Richiesta</button>
+      </form>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 1000,
       once: true
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const wasExpanded = card.classList.contains('expanded');
+        
+        document.querySelectorAll('.card').forEach(c => {
+          c.classList.remove('expanded');
+        });
+
+        if (!wasExpanded) {
+          card.classList.add('expanded');
+        }
+      });
+    });
+
+    // Gestione del modale
+    const demoModal = document.getElementById('demoModal');
+    const demoButton = document.querySelector('.demo-button');
+    const closeButton = document.querySelector('.modal-close');
+    const demoForm = document.getElementById('demoForm');
+
+    demoButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      demoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeButton.addEventListener('click', () => {
+      demoModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    demoModal.addEventListener('click', (e) => {
+      if (e.target === demoModal) {
+        demoModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    demoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Qui puoi aggiungere la logica per inviare il form
+      alert('Grazie per la tua richiesta! Ti contatteremo presto.');
+      demoModal.classList.remove('active');
+      document.body.style.overflow = '';
+      demoForm.reset();
     });
   </script>
 </body>
