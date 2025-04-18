@@ -1,10 +1,132 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Sito Test</title>
-  </head>
-  <body>
-    <h1>Benvenuto!</h1>
-    <p>Se vedi questo messaggio, il sito funziona ✅</p>
-  </body>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eulero - AI per l'ingegneria strutturale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    header {
+      background-color: #083c6c;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    header img {
+      width: 100px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 20px 0 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .button {
+      background-color: white;
+      color: #083c6c;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      color: #083c6c;
+      margin-bottom: 10px;
+    }
+    .technologies img {
+      height: 40px;
+      margin: 10px 20px 10px 0;
+    }
+    .team {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .team img {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f1f1f1;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Eulero Logo" />
+    <h1>AI per l'ingegneria strutturale</h1>
+    <p>Unisci FEM e Intelligenza Artificiale</p>
+    <a class="button" href="#chi-siamo">Scopri di più</a>
+  </header>
+
+  <section id="chi-siamo">
+    <h2>Chi siamo</h2>
+    <p>Progettiamo strumenti intelligenti per ingegneri, progettisti e aziende, unendo FEM e AI.</p>
+    <img src="mesh-diagram.png" alt="Flow da mesh a GNN" style="width:100%; max-width:600px; margin-top:20px;"/>
+  </section>
+
+  <section>
+    <h2>Tecnologie</h2>
+    <div class="technologies">
+      <img src="https://pytorch.org/assets/images/pytorch-logo.png" alt="PyTorch Geometric" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Qt_logo_2016.svg" alt="Qt / PyVista" />
+      <img src="easyfea-logo.png" alt="EasyFEA" />
+      <img src="reinforcement-learning.png" alt="Reinforcement Learning" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Team</h2>
+    <div class="team">
+      <img src="niccolo.jpg" alt="Niccolò Gatti" />
+      <div>
+        <strong>Niccolò Gatti</strong><br/>
+        Fondatore<br/>
+        <a href="mailto:niccolo@exaentnple.com">niccolo@exaentnple.com</a><br/>
+        <a href="https://linkedin.com/in/niccolo">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contattaci</h2>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Nome" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="message" placeholder="Messaggio" rows="5" required></textarea>
+      <button type="submit" class="button">Invia</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Eulero - Tutti i diritti riservati
+  </footer>
+</body>
 </html>
