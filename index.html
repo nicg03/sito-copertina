@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eulero - AI per l'ingegneria strutturale</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
@@ -33,8 +34,15 @@
       z-index: 1000;
     }
     nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-weight: 600;
       font-size: 1.4rem;
+    }
+    nav .logo img {
+      height: 32px;
+      width: auto;
     }
     nav ul {
       list-style: none;
@@ -131,7 +139,10 @@
 </head>
 <body>
   <nav data-aos="fade-down">
-    <div class="logo">Eulero</div>
+    <div class="logo">
+      <img src="logo.png" alt="Eulero Logo">
+      Eulero
+    </div>
     <ul>
       <li><a href="#about">Chi siamo</a></li>
       <li><a href="#services">Servizi</a></li>
