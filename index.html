@@ -153,6 +153,9 @@
       color: #8b949e;
       margin-top: 60px;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -162,12 +165,12 @@
       Eulero
     </div>
     <ul>
-      <li><a href="#about">Chi siamo</a></li>
+      <li><a href="#" onclick="toggleSection('about')">Chi siamo</a></li>
       <li><a href="#services">Servizi</a></li>
       <li><a href="#tech">Tecnologia</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#" onclick="toggleSection('faq')">FAQ</a></li>
       <li><a href="#contact">Contatti</a></li>
     </ul>
   </nav>
@@ -176,11 +179,11 @@
     <h1>AI per l'ingegneria strutturale</h1>
     <p>Dalla mesh alla soluzione: il futuro della progettazione strutturale, potenziato dall'intelligenza artificiale.</p>
     <div class="hero-media">
-      <img src="satellite.jpg" alt="Visual hero"> 
+      <img src="satellite.jpg" alt="Visual hero">
     </div>
   </header>
 
-  <section id="about" data-aos="fade-up">
+  <section id="about" class="hidden" data-aos="fade-up">
     <h2>Chi siamo</h2>
     <p>Eulero è un progetto che unisce Intelligenza Artificiale e analisi FEM per migliorare le prestazioni, l'efficienza e l'automazione nel design strutturale. Pensato per ingegneri, progettisti, aziende e ricercatori.</p>
   </section>
@@ -252,7 +255,7 @@
     </div>
   </section>
 
-  <section id="faq" data-aos="fade-up">
+  <section id="faq" class="hidden" data-aos="fade-up">
     <h2>FAQ</h2>
     <div class="grid">
       <div class="card">
@@ -294,6 +297,12 @@
       duration: 1000,
       once: true
     });
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle('hidden');
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
