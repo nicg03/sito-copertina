@@ -200,6 +200,36 @@
       display: block;
     }
 
+    .video-container {
+      margin: 30px auto;
+      max-width: 600px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .settings-image-container {
+      margin: 30px auto;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .settings-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     code {
       background-color: var(--bg-card);
       padding: 2px 6px;
@@ -240,6 +270,9 @@
         margin-left: 0;
         padding: 20px;
       }
+      .video-container {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -270,7 +303,6 @@
         <li><a href="#risultati">Visualizzazione Risultati</a></li>
         <li><a href="#report">Generazione Report</a></li>
         <li><a href="#export">Export e Condivisione</a></li>
-        <li><a href="#shortcuts">Scorciatoie da Tastiera</a></li>
       </ul>
     </aside>
 
@@ -298,7 +330,7 @@
         </ul>
 
         <div class="image-container">
-          <img src="img/interface-overview.jpg" alt="Panoramica dell'interfaccia">
+          <img src="img/home.png" alt="Schermata principale di Eulero">
         </div>
       </section>
 
@@ -358,8 +390,11 @@
           <li>Import/export proprietà</li>
         </ul>
 
-        <div class="image-container">
-          <img src="img/materials-library.jpg" alt="Libreria dei materiali">
+        <div class="video-container">
+          <video controls>
+            <source src="video/impostazioni.mov" type="video/quicktime">
+            Il tuo browser non supporta il tag video.
+          </video>
         </div>
       </section>
 
@@ -400,10 +435,13 @@
         <h3>Tipi di Visualizzazione</h3>
         <ul>
           <li>Mappe di colore</li>
-          <li>Vettori</li>
-          <li>Deformata</li>
-          <li>Animazioni</li>
+          <li>Deformazioni</li>
+          <li>Condizioni al contorno</li>
         </ul>
+
+        <div class="settings-image-container">
+          <img src="img/advanced_settings.png" alt="Impostazioni avanzate di visualizzazione">
+        </div>
       </section>
 
       <section id="report" class="section" data-aos="fade-up">
@@ -430,22 +468,6 @@
           <li>Report: PDF, HTML</li>
           <li>Dati: CSV, JSON</li>
         </ul>
-      </section>
-
-      <section id="shortcuts" class="section" data-aos="fade-up">
-        <h2>Scorciatoie da Tastiera</h2>
-        <p>Aumenta la tua produttività con le scorciatoie da tastiera.</p>
-
-        <div class="code-block">
-          <code>
-            Ctrl + N: Nuovo progetto<br>
-            Ctrl + S: Salva<br>
-            Ctrl + Z: Annulla<br>
-            Ctrl + Y: Ripeti<br>
-            F5: Aggiorna vista<br>
-            Space: Adatta alla vista
-          </code>
-        </div>
       </section>
     </main>
   </div>
