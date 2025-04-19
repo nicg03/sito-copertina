@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termini di Servizio - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .terms-header {
+      padding: 160px 20px 80px;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+    }
+
+    .terms-header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .terms-header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .terms-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .terms-section {
+      margin-bottom: 40px;
+    }
+
+    .terms-section h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+    }
+
+    .terms-section p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    .terms-section ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    .terms-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      font-style: italic;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      .terms-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="index.html#services">Servizi</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <header class="terms-header" data-aos="fade-up">
+    <h1>Termini di Servizio</h1>
+    <p>Le condizioni che regolano l'utilizzo di Eulero</p>
+  </header>
+
+  <main class="terms-content">
+    <section class="terms-section" data-aos="fade-up">
+      <h2>1. Accettazione dei Termini</h2>
+      <p>Utilizzando Eulero, l'utente accetta di essere vincolato dai presenti Termini di Servizio. Se non si accettano tutti i termini e le condizioni, si prega di non utilizzare il servizio.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>2. Descrizione del Servizio</h2>
+      <p>Eulero è una piattaforma software che fornisce servizi di analisi e ottimizzazione strutturale attraverso l'uso di reti neurali e algoritmi avanzati. Il servizio include:</p>
+      <ul>
+        <li>Generazione di mesh per analisi strutturale</li>
+        <li>Analisi tramite Graph Neural Networks</li>
+        <li>Ottimizzazione topologica</li>
+        <li>Visualizzazione e reporting dei risultati</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>3. Licenza d'Uso</h2>
+      <p>Eulero concede una licenza limitata, non esclusiva, non trasferibile per utilizzare il servizio in conformità con questi termini. Questa licenza è soggetta al rispetto di tutte le limitazioni e politiche d'uso applicabili.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>4. Proprietà Intellettuale</h2>
+      <p>Tutti i diritti di proprietà intellettuale relativi a Eulero, inclusi software, algoritmi, design e documentazione, sono di proprietà esclusiva di Eulero o dei suoi licenziatari. Gli utenti mantengono la proprietà dei loro dati e contenuti.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>5. Responsabilità dell'Utente</h2>
+      <p>L'utente si impegna a:</p>
+      <ul>
+        <li>Fornire informazioni accurate e aggiornate</li>
+        <li>Mantenere la sicurezza delle credenziali di accesso</li>
+        <li>Utilizzare il servizio in conformità con le leggi applicabili</li>
+        <li>Non tentare di accedere non autorizzato al sistema</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>6. Limitazioni di Responsabilità</h2>
+      <p>Eulero fornisce il servizio "così com'è" e non fornisce garanzie di alcun tipo, esplicite o implicite. Non saremo responsabili per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso del servizio.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>7. Privacy e Dati Personali</h2>
+      <p>Il trattamento dei dati personali è regolato dalla nostra Informativa sulla Privacy, che costituisce parte integrante di questi Termini di Servizio. Utilizzando il servizio, l'utente accetta le pratiche descritte nell'Informativa sulla Privacy.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>8. Modifiche ai Termini</h2>
+      <p>Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche saranno effettive dopo la pubblicazione dei termini aggiornati. L'uso continuato del servizio dopo tali modifiche costituisce accettazione dei nuovi termini.</p>
+    </section>
+
+    <section class="terms-section" data-aos="fade-up">
+      <h2>9. Legge Applicabile</h2>
+      <p>Questi termini sono regolati e interpretati in conformità con le leggi italiane. Qualsiasi controversia sarà soggetta alla giurisdizione esclusiva dei tribunali italiani.</p>
+    </section>
+
+    <p class="last-updated">Ultimo aggiornamento: Marzo 2024</p>
+  </main>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 
