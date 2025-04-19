@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Assistenza - Eulero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-info h3 {
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .contact-info p {
+      color: var(--text-secondary);
+    }
+
+    footer {
+      background-color: var(--bg-secondary);
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Centro Assistenza</h1>
+  </header>
+
+  <div class="content">
+    <div class="section">
+      <h2>FAQ</h2>
+      <p>Trova risposte alle domande più frequenti sui nostri prodotti e servizi.</p>
+    </div>
+
+    <div class="section">
+      <h2>Guide e Tutorial</h2>
+      <p>Accedi a guide dettagliate e tutorial per aiutarti a utilizzare al meglio i nostri strumenti.</p>
+    </div>
+
+    <div class="section contact-info">
+      <h3>Contattaci</h3>
+      <p>Email: <a href="mailto:support@example.com" style="color: var(--accent);">support@example.com</a></p>
+      <p>Telefono: +39 123 456 789</p>
+      <p>Indirizzo: Via Roma 1, Milano</p>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 

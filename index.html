@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eulero - AI per l'ingegneria strutturale</title>
-  <link rel="icon" type="image/png" href="logo_nero.png" />
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
@@ -99,6 +99,11 @@
       z-index: 1;
     }
 
+    header h1, header p, #countdown {
+      position: relative;
+      z-index: 1;
+    }
+
     header h1 {
       font-size: 4rem;
       font-weight: 300;
@@ -115,19 +120,40 @@
       margin-bottom: 40px;
     }
 
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
     .hero-media {
+      position: relative;
       width: 100%;
       max-width: 1200px;
       margin-top: 60px;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      aspect-ratio: 16/9;
     }
 
     .hero-media img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-media img.active {
+      opacity: 1;
+    }
+
+    .hero-media img.inactive {
+      opacity: 0;
     }
 
     section {
@@ -518,7 +544,7 @@
     .risultato-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.3s ease;
     }
 
@@ -545,7 +571,7 @@
 <body>
   <nav data-aos="fade-down">
     <div class="logo">
-      <img src="logo_bianco.png" alt="Eulero Logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
       Eulero
     </div>
     <ul>
@@ -555,6 +581,7 @@
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="#contact">Contatti</a></li>
+      <li><a href="download.html">Download</a></li>
     </ul>
   </nav>
 
@@ -562,40 +589,58 @@
     <h1>AI per l'ingegneria strutturale</h1>
     <p>Dalla mesh alla soluzione: il futuro della progettazione strutturale, potenziato dall'intelligenza artificiale.</p>
     <div class="hero-media">
-      <img src="satellite.jpg" alt="Visual hero"> 
+      <img src="img/automotive.jpg" alt="Visual hero - Automotive" class="active">
+      <img src="img/satellite.jpg" alt="Visual hero - Satellite" class="inactive">
+      <img src="img/energy.jpg" alt="Visual hero - Energy" class="inactive">
+      <img src="img/civil.jpg" alt="Visual hero - Civil Engineering" class="inactive">
     </div>
   </header>
+
+  <section id="speed-animation" data-aos="fade-up" style="text-align: center; padding: 60px 20px; background-color: var(--bg-secondary);">
+    <h2 style="color: var(--text-primary); margin-bottom: 20px;">Velocità di Calcolo</h2>
+    <div id="countdown" style="font-size: 3rem; font-weight: bold; color: var(--accent);"></div>
+  </section>
 
   <section id="risultati" class="risultati-section" data-aos="fade-up">
     <h2>Risultati e Funzionalità</h2>
     <div class="risultati-container">
+      <div class="risultato-card reverse">
+        <div class="risultato-content">
+          <h3>Visualizzazione 3D Interattiva</h3>
+          <p>L'interfaccia 3D intuitiva permette di manipolare i modelli in tempo reale, con feedback immediato sulle modifiche strutturali e visualizzazione avanzata dei risultati.</p>
+        </div>
+        <div class="risultato-image">
+          <img src="img/3d_demo.png" alt="Visualizzazione 3D">
+        </div>
+      </div>
+
       <div class="risultato-card">
         <div class="risultato-content">
           <h3>Analisi Strutturale Avanzata</h3>
           <p>Eulero utilizza algoritmi di intelligenza artificiale per analizzare strutture complesse in tempo reale. I nostri modelli GNN prevedono con precisione le sollecitazioni e le deformazioni, permettendo ottimizzazioni strutturali significative.</p>
         </div>
         <div class="risultato-image">
-          <img src="struttura1.jpg" alt="Analisi strutturale">
+          <img src="img/fea_mesh.png" alt="Analisi strutturale">
         </div>
       </div>
 
       <div class="risultato-card reverse">
         <div class="risultato-content">
-          <h3>Ottimizzazione Topologica</h3>
-          <p>La nostra tecnologia di ottimizzazione topologica identifica automaticamente le aree di materiale non necessarie, riducendo il peso fino al 40% mantenendo le stesse caratteristiche strutturali.</p>
+          <h3>Visualizza Deformazioni e Condizioni al Contorno</h3>
+          <p>Esplora le deformazioni strutturali e le condizioni al contorno con visualizzazioni dettagliate e interattive, per una comprensione approfondita delle prestazioni strutturali.</p>
         </div>
         <div class="risultato-image">
-          <img src="struttura2.jpg" alt="Ottimizzazione topologica">
+          <img src="img/deformazioni.png" alt="Visualizza Deformazioni">
         </div>
       </div>
 
       <div class="risultato-card">
         <div class="risultato-content">
-          <h3>Visualizzazione 3D Interattiva</h3>
-          <p>L'interfaccia 3D intuitiva permette di manipolare i modelli in tempo reale, con feedback immediato sulle modifiche strutturali e visualizzazione avanzata dei risultati.</p>
+          <h3>Ottimizzazione Topologica</h3>
+          <p>La nostra tecnologia di ottimizzazione topologica identifica automaticamente le aree di materiale non necessarie, riducendo il peso fino al 40% mantenendo le stesse caratteristiche strutturali.</p>
         </div>
         <div class="risultato-image">
-          <img src="struttura3.jpg" alt="Visualizzazione 3D">
+          <img src="img/struttura2.jpg" alt="Ottimizzazione topologica">
         </div>
       </div>
     </div>
@@ -668,7 +713,7 @@
     <h2>Team</h2>
     <div class="grid">
       <div class="member">
-        <img src="niccolo.jpg" alt="Niccolò">
+        <img src="img/niccolo.jpg" alt="Niccolò">
         <h3>Niccolò Gatti</h3>
         <p>Fondatore, AI Engineer</p>
         <a href="mailto:niccolo@example.com">niccolo@example.com</a>
@@ -708,9 +753,14 @@
     </form>
   </section>
 
-  <footer>
-    &copy; 2025 Eulero. Tutti i diritti riservati.
-  </footer>
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
 
   <!-- Modale Demo -->
   <div class="modal-overlay" id="demoModal">
@@ -787,6 +837,42 @@
       document.body.style.overflow = '';
       demoForm.reset();
     });
+
+    // Countdown animation
+    const countdownElement = document.getElementById('countdown');
+    let countdownValue = 1000;
+    let decrement = 1; // Decremento iniziale
+
+    const countdownInterval = setInterval(() => {
+      countdownElement.textContent = countdownValue.toFixed(2) + 's';
+      countdownValue -= decrement;
+      decrement *= 1.05; // Incremento esponenziale del decremento
+
+      if (countdownValue <= 0.03) {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = '0.03s';
+      }
+    }, 50); // Intervallo di aggiornamento
+
+    // Slideshow animation
+    const images = document.querySelectorAll('.hero-media img');
+    let currentIndex = 0;
+
+    function updateSlideshow() {
+      // Fade out current image
+      images[currentIndex].classList.remove('active');
+      images[currentIndex].classList.add('inactive');
+      
+      // Update index
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      // Fade in next image
+      images[currentIndex].classList.remove('inactive');
+      images[currentIndex].classList.add('active');
+    }
+
+    // Start slideshow
+    setInterval(updateSlideshow, 4200); // Change image every 4.2 seconds
   </script>
 </body>
 </html>

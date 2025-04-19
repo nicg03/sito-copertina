@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download - Eulero</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #111111;
+      margin-top: 80px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .download-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .download-card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .download-card img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Remove the navigation menu -->
+  <!-- <nav data-aos="fade-down">
+    <div class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </div>
+    <ul>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#services">Servizi</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="#contact">Contatti</a></li>
+      <li><a href="download.html">Download</a></li>
+    </ul>
+  </nav> -->
+
+  <!-- Add a back button -->
+  <div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.history.back()" style="padding: 10px 20px; font-size: 1rem; background-color: var(--accent); color: white; border: none; border-radius: 5px; cursor: pointer;">Torna Indietro</button>
+  </div>
+
+  <header>
+    <h1>Download Eulero</h1>
+  </header>
+  <main>
+    <p style="text-align: center;">Scarica Eulero per il tuo sistema operativo:</p>
+    <div class="download-container">
+      <div class="download-card">
+        <img src="img/windows.png" alt="Windows">
+        <p style="text-align: center; font-weight: bold; margin-top: 10px; color: #000000;">Windows</p>
+      </div>
+      <div class="download-card">
+        <img src="img/apple.png" alt="macOS">
+        <p style="text-align: center; font-weight: bold; margin-top: 10px; color: #000000;">macOS</p>
+      </div>
+      <div class="download-card">
+        <img src="img/linux.png" alt="Linux">
+        <p style="text-align: center; font-weight: bold; margin-top: 10px; color: #000000;">Linux</p>
+      </div>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+</body>
+</html> 
