@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manuale Utente - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .manual-container {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    .sidebar {
+      width: 300px;
+      background-color: var(--bg-secondary);
+      padding: 40px 20px;
+      position: fixed;
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+    }
+
+    .sidebar h3 {
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      color: var(--text-primary);
+      background-color: var(--bg-card);
+    }
+
+    .content {
+      margin-left: 300px;
+      padding: 40px;
+      max-width: 900px;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      letter-spacing: -1px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 40px 0 20px;
+      color: var(--text-primary);
+    }
+
+    .section h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 30px 0 15px;
+      color: var(--accent);
+    }
+
+    .section p {
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+    }
+
+    .section ul, .section ol {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+
+    .section li {
+      margin-bottom: 10px;
+    }
+
+    .info-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .info-box strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .image-container {
+      margin: 30px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    code {
+      background-color: var(--bg-card);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    .code-block {
+      background-color: var(--bg-card);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 250px;
+      }
+      .content {
+        margin-left: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .manual-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 20px;
+      }
+      .content {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="manual-container">
+    <aside class="sidebar" data-aos="fade-right">
+      <h3>Indice</h3>
+      <ul>
+        <li><a href="#introduzione">Introduzione</a></li>
+        <li><a href="#interfaccia">Interfaccia Utente</a></li>
+        <li><a href="#progetti">Gestione Progetti</a></li>
+        <li><a href="#mesh">Generazione Mesh</a></li>
+        <li><a href="#materiali">Materiali e Proprietà</a></li>
+        <li><a href="#analisi">Analisi Strutturale</a></li>
+        <li><a href="#ottimizzazione">Ottimizzazione</a></li>
+        <li><a href="#risultati">Visualizzazione Risultati</a></li>
+        <li><a href="#report">Generazione Report</a></li>
+        <li><a href="#export">Export e Condivisione</a></li>
+        <li><a href="#shortcuts">Scorciatoie da Tastiera</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section id="introduzione" class="section" data-aos="fade-up">
+        <h1>Manuale Utente</h1>
+        <p>Benvenuto nel manuale utente di Eulero. Questa guida completa ti aiuterà a sfruttare al meglio tutte le funzionalità del software per l'analisi strutturale potenziata dall'intelligenza artificiale.</p>
+        
+        <div class="info-box">
+          <strong>Nota Importante</strong>
+          <p>Questo manuale si riferisce alla versione 1.0 di Eulero. Alcune funzionalità potrebbero variare nelle versioni successive.</p>
+        </div>
+      </section>
+
+      <section id="interfaccia" class="section" data-aos="fade-up">
+        <h2>Interfaccia Utente</h2>
+        <p>L'interfaccia di Eulero è stata progettata per essere intuitiva e efficiente, organizzata in aree funzionali distinte.</p>
+
+        <h3>Area di Lavoro Principale</h3>
+        <ul>
+          <li>Viewport 3D interattivo</li>
+          <li>Barra degli strumenti contestuale</li>
+          <li>Timeline del progetto</li>
+          <li>Pannello delle proprietà</li>
+        </ul>
+
+        <div class="image-container">
+          <img src="img/interface-overview.jpg" alt="Panoramica dell'interfaccia">
+        </div>
+      </section>
+
+      <section id="progetti" class="section" data-aos="fade-up">
+        <h2>Gestione Progetti</h2>
+        <p>Eulero organizza il tuo lavoro in progetti, che contengono tutti i dati necessari per l'analisi strutturale.</p>
+
+        <h3>Creare un Nuovo Progetto</h3>
+        <ol>
+          <li>Seleziona File > Nuovo Progetto</li>
+          <li>Scegli un template o parti da zero</li>
+          <li>Configura le impostazioni iniziali:
+            <ul>
+              <li>Unità di misura</li>
+              <li>Standard di riferimento</li>
+              <li>Parametri di analisi</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="info-box">
+          <strong>Pro Tip</strong>
+          <p>Usa i template predefiniti per accelerare il setup iniziale del progetto e seguire le best practices del settore.</p>
+        </div>
+      </section>
+
+      <section id="mesh" class="section" data-aos="fade-up">
+        <h2>Generazione Mesh</h2>
+        <p>La generazione della mesh è un passaggio fondamentale per l'analisi strutturale. Eulero offre strumenti avanzati per la creazione e l'ottimizzazione della mesh.</p>
+
+        <h3>Parametri della Mesh</h3>
+        <ul>
+          <li>Dimensione degli elementi</li>
+          <li>Qualità della mesh</li>
+          <li>Raffinamento locale</li>
+          <li>Controlli di convergenza</li>
+        </ul>
+
+        <div class="code-block">
+          <code>
+            // Esempio di parametri mesh<br>
+            mesh.size = 0.01;  // dimensione base elementi<br>
+            mesh.quality = 0.85;  // indice di qualità<br>
+            mesh.refinement = "adaptive";  // raffinamento automatico
+          </code>
+        </div>
+      </section>
+
+      <section id="materiali" class="section" data-aos="fade-up">
+        <h2>Materiali e Proprietà</h2>
+        <p>Gestisci le proprietà dei materiali e le loro caratteristiche meccaniche.</p>
+
+        <h3>Libreria Materiali</h3>
+        <ul>
+          <li>Materiali standard predefiniti</li>
+          <li>Creazione materiali personalizzati</li>
+          <li>Import/export proprietà</li>
+        </ul>
+
+        <div class="image-container">
+          <img src="img/materials-library.jpg" alt="Libreria dei materiali">
+        </div>
+      </section>
+
+      <section id="analisi" class="section" data-aos="fade-up">
+        <h2>Analisi Strutturale</h2>
+        <p>Eulero utilizza algoritmi di intelligenza artificiale per accelerare l'analisi strutturale mantenendo un'elevata precisione.</p>
+
+        <h3>Tipi di Analisi</h3>
+        <ul>
+          <li>Analisi statica lineare</li>
+          <li>Analisi modale</li>
+          <li>Analisi dinamica</li>
+          <li>Analisi termica</li>
+        </ul>
+
+        <div class="info-box">
+          <strong>Nota sulla Precisione</strong>
+          <p>L'analisi basata su GNN garantisce una precisione del 99% rispetto ai metodi FEM tradizionali, con tempi di calcolo ridotti fino al 90%.</p>
+        </div>
+      </section>
+
+      <section id="ottimizzazione" class="section" data-aos="fade-up">
+        <h2>Ottimizzazione</h2>
+        <p>Strumenti di ottimizzazione topologica per ridurre il peso e migliorare le performance strutturali.</p>
+
+        <h3>Parametri di Ottimizzazione</h3>
+        <ul>
+          <li>Obiettivi di peso</li>
+          <li>Vincoli di produzione</li>
+          <li>Criteri di performance</li>
+        </ul>
+      </section>
+
+      <section id="risultati" class="section" data-aos="fade-up">
+        <h2>Visualizzazione Risultati</h2>
+        <p>Strumenti avanzati per la visualizzazione e l'interpretazione dei risultati dell'analisi.</p>
+
+        <h3>Tipi di Visualizzazione</h3>
+        <ul>
+          <li>Mappe di colore</li>
+          <li>Vettori</li>
+          <li>Deformata</li>
+          <li>Animazioni</li>
+        </ul>
+      </section>
+
+      <section id="report" class="section" data-aos="fade-up">
+        <h2>Generazione Report</h2>
+        <p>Crea report professionali automatizzati con i risultati dell'analisi.</p>
+
+        <h3>Contenuti del Report</h3>
+        <ul>
+          <li>Sommario esecutivo</li>
+          <li>Dati di input</li>
+          <li>Risultati dell'analisi</li>
+          <li>Grafici e visualizzazioni</li>
+        </ul>
+      </section>
+
+      <section id="export" class="section" data-aos="fade-up">
+        <h2>Export e Condivisione</h2>
+        <p>Opzioni per l'esportazione e la condivisione dei risultati.</p>
+
+        <h3>Formati Supportati</h3>
+        <ul>
+          <li>CAD: STEP, IGES</li>
+          <li>Mesh: STL, OBJ</li>
+          <li>Report: PDF, HTML</li>
+          <li>Dati: CSV, JSON</li>
+        </ul>
+      </section>
+
+      <section id="shortcuts" class="section" data-aos="fade-up">
+        <h2>Scorciatoie da Tastiera</h2>
+        <p>Aumenta la tua produttività con le scorciatoie da tastiera.</p>
+
+        <div class="code-block">
+          <code>
+            Ctrl + N: Nuovo progetto<br>
+            Ctrl + S: Salva<br>
+            Ctrl + Z: Annulla<br>
+            Ctrl + Y: Ripeti<br>
+            F5: Aggiorna vista<br>
+            Space: Adatta alla vista
+          </code>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Highlight active section in sidebar
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.sidebar a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html> 

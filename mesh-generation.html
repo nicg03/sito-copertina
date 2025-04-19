@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generazione Mesh - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* Stili base ereditati */
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 20px 60px;
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header-section h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .header-section p {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+
+    .section h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 32px 0 16px;
+      color: var(--text-primary);
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .feature-card h4 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .code-block {
+      background-color: var(--bg-card);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: monospace;
+      color: var(--accent);
+    }
+
+    .image-container {
+      margin: 32px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .tip-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+
+    .tip-box strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .parameters-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    .parameters-table th,
+    .parameters-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .parameters-table th {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .parameters-table td {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .header-section h1 {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="content-container">
+    <header class="header-section" data-aos="fade-up">
+      <h1>Generazione Mesh</h1>
+      <p>Guida completa alla generazione e ottimizzazione delle mesh in Eulero</p>
+    </header>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Introduzione</h2>
+      <p>La generazione della mesh è un passaggio fondamentale nell'analisi strutturale. Eulero utilizza algoritmi avanzati per creare mesh di alta qualità, ottimizzate per l'<a href="gnn-analysis.html" style="color: var(--accent); text-decoration: none;">analisi GNN</a>.</p>
+      
+      <div class="image-container">
+        <img src="img/mesh-example.jpg" alt="Esempio di mesh generata con Eulero">
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Caratteristiche Principali</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Generazione Automatica</h4>
+          <p>Algoritmi intelligenti che creano mesh ottimizzate basate sulla geometria del modello.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Raffinamento Adattivo</h4>
+          <p>Raffinamento automatico nelle aree critiche per una maggiore precisione.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Controllo Qualità</h4>
+          <p>Verifica automatica della qualità degli elementi e correzione delle problematiche.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Ottimizzazione</h4>
+          <p>Bilanciamento automatico tra precisione e performance computazionale.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Parametri di Controllo</h2>
+      <table class="parameters-table">
+        <tr>
+          <th>Parametro</th>
+          <th>Descrizione</th>
+          <th>Valore Default</th>
+        </tr>
+        <tr>
+          <td>Dimensione Elemento</td>
+          <td>Dimensione base degli elementi della mesh</td>
+          <td>0.01</td>
+        </tr>
+        <tr>
+          <td>Qualità Minima</td>
+          <td>Soglia minima per la qualità degli elementi</td>
+          <td>0.3</td>
+        </tr>
+        <tr>
+          <td>Fattore di Crescita</td>
+          <td>Rapporto massimo tra elementi adiacenti</td>
+          <td>1.5</td>
+        </tr>
+        <tr>
+          <td>Curvatura</td>
+          <td>Numero di elementi per curvatura</td>
+          <td>8</td>
+        </tr>
+      </table>
+
+      <div class="code-block">
+        <code>
+          // Configurazione mesh avanzata<br>
+          mesh.setParameters({<br>
+            &nbsp;&nbsp;elementSize: 0.01,<br>
+            &nbsp;&nbsp;minQuality: 0.3,<br>
+            &nbsp;&nbsp;growthRate: 1.5,<br>
+            &nbsp;&nbsp;curvatureElements: 8<br>
+          });
+        </code>
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Best Practices</h2>
+      <h3>Preparazione del Modello</h3>
+      <ul>
+        <li>Pulire la geometria da feature non necessarie</li>
+        <li>Verificare la continuità delle superfici</li>
+        <li>Identificare le aree che richiedono maggior dettaglio</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>Pro Tip</strong>
+        <p>Utilizzare il preview della mesh per verificare rapidamente la qualità della discretizzazione prima di procedere con l'analisi completa.</p>
+      </div>
+
+      <h3>Ottimizzazione della Mesh</h3>
+      <ul>
+        <li>Iniziare con una mesh grossolana e raffinare progressivamente</li>
+        <li>Utilizzare il raffinamento locale nelle aree di interesse</li>
+        <li>Monitorare la qualità degli elementi durante il raffinamento</li>
+      </ul>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Troubleshooting</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Elementi Distorti</h4>
+          <p>Aumentare la qualità minima e ridurre il fattore di crescita.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Mesh Troppo Densa</h4>
+          <p>Aumentare la dimensione base degli elementi e ottimizzare il raffinamento locale.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Errori di Generazione</h4>
+          <p>Verificare la geometria di input e correggere eventuali discontinuità.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Performance Scarse</h4>
+          <p>Bilanciare la densità della mesh nelle aree non critiche.</p>
+        </div>
+      </div>
+      
+      <div class="info-box" style="margin-top: 32px;">
+        <strong>Prossimi Passi</strong>
+        <p>Una volta generata una mesh di qualità, puoi procedere con l'<a href="gnn-analysis.html" style="color: var(--accent); text-decoration: none;">analisi GNN</a> per ottenere risultati rapidi e precisi.</p>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 

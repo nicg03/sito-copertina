@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida Rapida - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .guide-header {
+      padding: 160px 20px 80px;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+    }
+
+    .guide-header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .guide-header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .guide-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .video-section {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-container video {
+      width: 100%;
+      display: block;
+    }
+
+    .steps-section {
+      margin-bottom: 80px;
+    }
+
+    .step-card {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .step-number {
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .step-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .step-card p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .step-card ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    .step-card ul li {
+      color: var(--text-secondary);
+      margin: 8px 0;
+      position: relative;
+    }
+
+    .step-card ul li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tip-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 16px;
+      margin-top: 16px;
+      border-radius: 4px;
+    }
+
+    .tip-box strong {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      .guide-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .step-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <header class="guide-header" data-aos="fade-up">
+    <h1>Guida Rapida</h1>
+    <p>Inizia a utilizzare Eulero in meno di 10 minuti</p>
+  </header>
+
+  <main class="guide-content">
+    <section class="video-section" data-aos="fade-up">
+      <div class="video-container">
+        <video controls poster="img/video-thumbnail.jpg">
+          <source src="video/quick-start-guide.mp4" type="video/mp4">
+          Il tuo browser non supporta il tag video.
+        </video>
+      </div>
+    </section>
+
+    <section class="steps-section">
+      <div class="step-card" data-aos="fade-up">
+        <div class="step-number">01</div>
+        <h3>Installazione</h3>
+        <p>Scarica e installa Eulero sul tuo sistema:</p>
+        <ul>
+          <li>Scarica l'ultima versione dal nostro sito</li>
+          <li>Esegui il file di installazione</li>
+          <li>Segui la procedura guidata di installazione</li>
+        </ul>
+        <div class="tip-box">
+          <strong>Pro Tip:</strong> Assicurati di avere i privilegi di amministratore durante l'installazione.
+        </div>
+      </div>
+
+      <div class="step-card" data-aos="fade-up">
+        <div class="step-number">02</div>
+        <h3>Configurazione Iniziale</h3>
+        <p>Configura il tuo ambiente di lavoro:</p>
+        <ul>
+          <li>Avvia Eulero per la prima volta</li>
+          <li>Seleziona la tua lingua e le preferenze</li>
+          <li>Configura le impostazioni di sistema</li>
+          <li>Verifica la connessione al server (se necessario)</li>
+        </ul>
+      </div>
+
+      <div class="step-card" data-aos="fade-up">
+        <div class="step-number">03</div>
+        <h3>Primo Progetto</h3>
+        <p>Crea il tuo primo progetto di analisi strutturale:</p>
+        <ul>
+          <li>Crea un nuovo progetto</li>
+          <li>Importa o crea una geometria</li>
+          <li>Definisci i materiali e le condizioni al contorno</li>
+          <li>Genera la mesh</li>
+        </ul>
+        <div class="tip-box">
+          <strong>Pro Tip:</strong> Inizia con uno dei nostri progetti di esempio per familiarizzare con l'interfaccia.
+        </div>
+      </div>
+
+      <div class="step-card" data-aos="fade-up">
+        <div class="step-number">04</div>
+        <h3>Analisi e Risultati</h3>
+        <p>Esegui la tua prima analisi:</p>
+        <ul>
+          <li>Avvia l'analisi GNN</li>
+          <li>Visualizza i risultati in tempo reale</li>
+          <li>Esporta i risultati</li>
+          <li>Genera il report automatico</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 

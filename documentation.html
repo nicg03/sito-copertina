@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentazione - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .documentation-header {
+      padding: 160px 20px 80px;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+    }
+
+    .documentation-header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .documentation-header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .documentation-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .doc-section {
+      margin-bottom: 80px;
+    }
+
+    .doc-section h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .doc-card {
+      background-color: var(--bg-card);
+      padding: 32px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .doc-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .doc-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .doc-card p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .doc-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .doc-card ul li {
+      margin: 12px 0;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .doc-card ul li:hover {
+      color: var(--text-primary);
+    }
+
+    .doc-card .coming-soon {
+      font-style: italic;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .doc-card ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .doc-card ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      .documentation-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .doc-section {
+        margin-bottom: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="index.html#services">Servizi</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <header class="documentation-header" data-aos="fade-up">
+    <h1>Documentazione</h1>
+    <p>Tutto ciò che ti serve per utilizzare al meglio Eulero nella tua azienda</p>
+  </header>
+
+  <main class="documentation-content">
+    <section class="doc-section" data-aos="fade-up">
+      <h2>Guide Introduttive</h2>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <h3>Primi Passi</h3>
+          <p>Inizia subito con Eulero: guide essenziali per i nuovi utenti.</p>
+          <ul>
+            <li><a href="quick-guide.html">🚀 Guida Rapida</a></li>
+            <li><a href="user-manual.html">📚 Manuale Utente</a></li>
+            <li>⚙️ Requisiti di Sistema</li>
+            <li>🔧 Configurazione Iniziale</li>
+          </ul>
+        </div>
+        <div class="doc-card">
+          <h3>Best Practices</h3>
+          <p>Ottimizza il tuo workflow con le nostre linee guida.</p>
+          <ul>
+            <li>📈 Workflow Consigliati</li>
+            <li>🎯 Ottimizzazione Performance</li>
+            <li>🛠️ Setup Ambiente di Lavoro</li>
+            <li>📊 Gestione Progetti</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" data-aos="fade-up">
+      <h2>Documentazione Tecnica</h2>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <h3>Funzionalità Core</h3>
+          <p>Esplora le funzionalità principali di Eulero.</p>
+          <ul>
+            <li><a href="mesh-generation.html">🔄 Generazione Mesh</a></li>
+            <li><a href="gnn-analysis.html">📊 Analisi GNN</a></li>
+            <li>🎯 Ottimizzazione Topologica</li>
+            <li>📈 Visualizzazione Risultati</li>
+          </ul>
+        </div>
+        <div class="doc-card">
+          <h3>Integrazioni</h3>
+          <p>Guide per integrare Eulero con altri strumenti.</p>
+          <ul>
+            <li>🔌 API Reference</li>
+            <li>🔄 Import/Export</li>
+            <li>🛠️ Plugin CAD</li>
+            <li class="coming-soon">⚡ Cloud Integration (Coming Soon)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" data-aos="fade-up">
+      <h2>Risorse Enterprise</h2>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <h3>Deployment</h3>
+          <p>Guide per l'implementazione aziendale.</p>
+          <ul>
+            <li>🏢 Setup Enterprise</li>
+            <li>🔒 Sicurezza e Compliance</li>
+            <li>📊 Scalabilità</li>
+            <li>🔄 Backup e Recovery</li>
+          </ul>
+        </div>
+        <div class="doc-card">
+          <h3>Supporto e Training</h3>
+          <p>Risorse per il supporto continuo.</p>
+          <ul>
+            <li>👥 Training Team</li>
+            <li>📚 Knowledge Base</li>
+            <li>🎓 Certificazioni</li>
+            <li>💬 Supporto Tecnico</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 

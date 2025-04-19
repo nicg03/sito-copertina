@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analisi GNN - Eulero</title>
+  <link rel="icon" type="image/png" href="img/logo_nero.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #151515;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #222222;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul li a {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 20px 60px;
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header-section h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .header-section p {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+
+    .section h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 32px 0 16px;
+      color: var(--text-primary);
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .feature-card h4 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .image-container {
+      margin: 32px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .comparison-table td {
+      color: var(--text-secondary);
+    }
+
+    .info-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+
+    .info-box strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .code-block {
+      background-color: var(--bg-card);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: monospace;
+      color: var(--accent);
+    }
+
+    .performance-chart {
+      background-color: var(--bg-card);
+      padding: 24px;
+      border-radius: 12px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .header-section h1 {
+        font-size: 2.5rem;
+      }
+
+      nav {
+        padding: 16px 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav data-aos="fade-down">
+    <a href="index.html" class="logo">
+      <img src="img/logo_bianco.png" alt="Eulero Logo">
+      Eulero
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="documentation.html">Documentazione</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="content-container">
+    <header class="header-section" data-aos="fade-up">
+      <h1>Analisi GNN</h1>
+      <p>Scopri come Eulero utilizza le Graph Neural Networks per rivoluzionare l'analisi strutturale</p>
+    </header>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Introduzione alle GNN</h2>
+      <p>Le Graph Neural Networks (GNN) rappresentano un'innovativa applicazione del deep learning all'analisi strutturale. Eulero utilizza questa tecnologia per offrire analisi più rapide e precise rispetto ai metodi tradizionali. Il processo inizia con una <a href="mesh-generation.html" style="color: var(--accent); text-decoration: none;">mesh di alta qualità</a> che viene convertita in un grafo per l'elaborazione.</p>
+      
+      <div class="image-container">
+        <img src="img/gnn-overview.jpg" alt="Overview del funzionamento delle GNN">
+      </div>
+
+      <div class="info-box">
+        <strong>Innovazione Tecnologica</strong>
+        <p>Le GNN permettono di ridurre i tempi di calcolo fino al 90% mantenendo una precisione superiore al 99% rispetto ai metodi FEM tradizionali.</p>
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Vantaggi Principali</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Velocità di Calcolo</h4>
+          <p>Analisi strutturali completate in una frazione del tempo rispetto ai metodi tradizionali.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Precisione Elevata</h4>
+          <p>Risultati validati con precisione superiore al 99% rispetto ai metodi FEM.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Apprendimento Continuo</h4>
+          <p>Il modello migliora costantemente con l'aumentare dei casi analizzati.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Ottimizzazione Automatica</h4>
+          <p>Suggerimenti intelligenti per migliorare il design strutturale.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Confronto con Metodi Tradizionali</h2>
+      <table class="comparison-table">
+        <tr>
+          <th>Caratteristica</th>
+          <th>GNN (Eulero)</th>
+          <th>FEM Tradizionale</th>
+        </tr>
+        <tr>
+          <td>Tempo di Calcolo</td>
+          <td>Secondi - Minuti</td>
+          <td>Ore - Giorni</td>
+        </tr>
+        <tr>
+          <td>Risorse Computazionali</td>
+          <td>Basse</td>
+          <td>Elevate</td>
+        </tr>
+        <tr>
+          <td>Precisione</td>
+          <td>>99%</td>
+          <td>100% (riferimento)</td>
+        </tr>
+        <tr>
+          <td>Ottimizzazione</td>
+          <td>Automatica</td>
+          <td>Manuale</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Processo di Analisi</h2>
+      <h3>1. Preparazione del Modello</h3>
+      <ul>
+        <li>Conversione della mesh in formato grafo</li>
+        <li>Definizione delle condizioni al contorno</li>
+        <li>Impostazione dei parametri di analisi</li>
+      </ul>
+
+      <h3>2. Elaborazione GNN</h3>
+      <div class="code-block">
+        <code>
+          // Configurazione analisi GNN<br>
+          analysis.setParameters({<br>
+            &nbsp;&nbsp;modelType: "structural",<br>
+            &nbsp;&nbsp;precision: "high",<br>
+            &nbsp;&nbsp;optimization: true,<br>
+            &nbsp;&nbsp;learningRate: 0.001<br>
+          });
+        </code>
+      </div>
+
+      <h3>3. Post-Processing</h3>
+      <ul>
+        <li>Visualizzazione risultati in tempo reale</li>
+        <li>Generazione report automatici</li>
+        <li>Suggerimenti di ottimizzazione</li>
+      </ul>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Casi di Studio</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Analisi Statica</h4>
+          <p>Riduzione del tempo di calcolo del 95% per analisi di componenti automotive.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Ottimizzazione Topologica</h4>
+          <p>Riduzione del peso del 30% con mantenimento delle performance strutturali.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Analisi Dinamica</h4>
+          <p>Identificazione rapida delle frequenze naturali e modi di vibrare.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Analisi Termica</h4>
+          <p>Simulazione accurata di scambi termici complessi.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Best Practices</h2>
+      <div class="info-box">
+        <strong>Ottimizzazione delle Performance</strong>
+        <p>Segui queste linee guida per ottenere i migliori risultati dall'analisi GNN:</p>
+      </div>
+      <ul>
+        <li>Utilizzare <a href="mesh-generation.html" style="color: var(--accent); text-decoration: none;">mesh di qualità elevata</a> per migliori risultati</li>
+        <li>Definire correttamente le condizioni al contorno</li>
+        <li>Sfruttare l'ottimizzazione automatica per il design</li>
+        <li>Validare i risultati con casi di test noti</li>
+      </ul>
+    </section>
+
+    <section class="section" data-aos="fade-up">
+      <h2>Sviluppi Futuri</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Analisi Multi-fisica</h4>
+          <p>Integrazione di analisi strutturale, termica e fluidodinamica.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Ottimizzazione Real-time</h4>
+          <p>Suggerimenti di design in tempo reale durante la modellazione.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Cloud Integration</h4>
+          <p>Analisi distribuite su cloud per progetti di grande scala.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Digital Twin</h4>
+          <p>Integrazione con sistemi di monitoraggio in tempo reale.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="footer"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 
